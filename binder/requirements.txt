@@ -1,1 +1,3 @@
+mendeley2
+pyexlatex
 bibtex_gen
