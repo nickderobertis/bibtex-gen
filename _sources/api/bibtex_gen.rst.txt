@@ -1,0 +1,27 @@
+bibtex\_gen package
+===================
+
+.. automodule:: bibtex_gen
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+bibtex\_gen.main module
+-----------------------
+
+.. automodule:: bibtex_gen.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+bibtex\_gen.mendeley module
+---------------------------
+
+.. automodule:: bibtex_gen.mendeley
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

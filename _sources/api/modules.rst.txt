@@ -1,0 +1,7 @@
+bibtex_gen
+==========
+
+.. toctree::
+   :maxdepth: 4
+
+   bibtex_gen
