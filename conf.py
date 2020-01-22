@@ -17,7 +17,7 @@ REPO_MAINTAINERS = [
 ]
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 1, 0)
+PACKAGE_VERSION_TUPLE = (0, 1, 1)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = "Generate BibTeX reference objects from DOIs and strings"
@@ -59,6 +59,8 @@ PACKAGE_INSTALL_REQUIRES = [
     # e.g.
     # 'package',
     # 'otherpackage>=1,<2'
+    'mendeley2',
+    'pyexlatex'
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here
