@@ -1,5 +1,5 @@
 
-[![](https://codecov.io/gh/whoopnip/bibtex-gen/branch/master/graph/badge.svg)](https://codecov.io/gh/whoopnip/bibtex-gen)
+[![](https://codecov.io/gh/nickderobertis/bibtex-gen/branch/master/graph/badge.svg)](https://codecov.io/gh/nickderobertis/bibtex-gen)
 
 # bibtex-gen
 
@@ -25,7 +25,7 @@ import bibtex_gen
 
 ## Links
 
-See the 
+See the
 [documentation here.](
-https://whoopnip.github.io/bibtex-gen/
+https://nickderobertis.github.io/bibtex-gen/
 )

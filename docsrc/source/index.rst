@@ -22,7 +22,7 @@ An overview
 Quick Links
 ------------
 
-Find the source code `on Github <https://github.com/whoopnip/bibtex-gen>`_.
+Find the source code `on Github <https://github.com/nickderobertis/bibtex-gen>`_.
 
 
 bibtex_gen
