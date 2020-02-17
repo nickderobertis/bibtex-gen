@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to BibTeX Generator documentation! &mdash; bibtex_gen 0.1.1 documentation</title>
+  <title>Welcome to BibTeX Generator documentation! &mdash; bibtex_gen 0.1.2 documentation</title>
   
 
   
@@ -22,13 +22,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="_static/clipboard.min.js"></script>
-        <script type="text/javascript" src="_static/copybutton.js"></script>
-        <script type="text/javascript">var copybuttonSkipText = '>>> ';</script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.1
+                0.1.2
               </div>
             
           
@@ -95,7 +95,7 @@
               <p class="caption"><span class="caption-text">Tutorial</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Getting started with bibtex_gen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">This is my gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Examples</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API Documentation</span></p>
 <ul>
@@ -174,10 +174,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Getting started with bibtex_gen</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorial.html#install">Install</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#usage">Usage</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">This is my gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Examples</a></li>
 </ul>
 </div>
 <div class="section" id="an-overview">
@@ -190,6 +189,20 @@
 <h3>bibtex_gen<a class="headerlink" href="#bibtex-gen" title="Permalink to this headline">¶</a></h3>
 <p>This is a simple example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bibtex_gen</span>
+
+<span class="c1"># Note: these are fake credentials. You need to sign up for a Mendeley account, go to Mendeley Developers,</span>
+<span class="c1"># and create an &quot;app&quot; which will give you this info.</span>
+<span class="n">mendeley_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;9871&#39;</span>
+<span class="n">mendeley_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;sdfa4dfDSSDFasda&#39;</span>
+
+<span class="c1"># Keys are name by which reference will be accessed, values are DOIs</span>
+<span class="n">item_doi_dict</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s1">&#39;da-engelberg-gao-2011&#39;</span><span class="p">:</span> <span class="s1">&#39;10.1111/j.1540-6261.2011.01679.x&#39;</span><span class="p">,</span>
+<span class="s1">&#39;barber-odean-2008&#39;</span><span class="p">:</span> <span class="s1">&#39;10.1093/rfs/hhm079&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># These objects contain all the article data and can be used directly with pyexlatex</span>
+<span class="n">bibtex_objs</span> <span class="o">=</span> <span class="n">bibtex_gen</span><span class="o">.</span><span class="n">item_accessor_doi_dict_to_bib_tex</span><span class="p">(</span><span class="n">item_doi_dict</span><span class="p">,</span> <span class="n">mendeley_client_id</span><span class="p">,</span> <span class="n">mendeley_client_secret</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">

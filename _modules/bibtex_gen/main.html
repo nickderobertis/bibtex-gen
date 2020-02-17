@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>bibtex_gen.main &mdash; bibtex_gen 0.1.1 documentation</title>
+  <title>bibtex_gen.main &mdash; bibtex_gen 0.1.2 documentation</title>
   
 
   
@@ -22,13 +22,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script type="text/javascript" src="../../_static/clipboard.min.js"></script>
-        <script type="text/javascript" src="../../_static/copybutton.js"></script>
-        <script type="text/javascript">var copybuttonSkipText = '>>> ';</script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.1.1
+                0.1.2
               </div>
             
           
@@ -94,7 +94,7 @@
               <p class="caption"><span class="caption-text">Tutorial</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Getting started with bibtex_gen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../auto_examples/index.html">This is my gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_examples/index.html">Examples</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API Documentation</span></p>
 <ul>
@@ -172,6 +172,19 @@
 
 
 <div class="viewcode-block" id="BibTexGenerator"><a class="viewcode-back" href="../../api/bibtex_gen.html#bibtex_gen.main.BibTexGenerator">[docs]</a><span class="k">class</span> <span class="nc">BibTexGenerator</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get BibTeX objects from DOIs using the Mendeley API</span>
+
+<span class="sd">    :Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; import bibtex_gen</span>
+<span class="sd">        &gt;&gt;&gt; # Note: these are fake credentials. You need to sign up for a Mendeley account, go to Mendeley Developers,</span>
+<span class="sd">        &gt;&gt;&gt; # and create an &quot;app&quot; which will give you this info.</span>
+<span class="sd">        &gt;&gt;&gt; mendeley_client_id: str = &#39;9871&#39;</span>
+<span class="sd">        &gt;&gt;&gt; mendeley_client_secret: str = &#39;sdfa4dfDSSDFasda&#39;</span>
+<span class="sd">        &gt;&gt;&gt; btg = bibtex_gen.BibTexGenerator(mendeley_client_id, mendeley_client_secret)</span>
+<span class="sd">        &gt;&gt;&gt; bibtex_obj = btg.generate(&#39;10.1111/j.1540-6261.2011.01679.x&#39;, &#39;da-engelberg-gao-2011&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="BibTexGenerator.__init__"><a class="viewcode-back" href="../../api/bibtex_gen.html#bibtex_gen.main.BibTexGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mendeley_client_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mendeley_client_secret</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">mendeley</span> <span class="o">=</span> <span class="n">Mendeley</span><span class="p">(</span><span class="n">mendeley_client_id</span><span class="p">,</span> <span class="n">mendeley_client_secret</span><span class="p">)</span>
@@ -201,6 +214,32 @@
                                       <span class="n">extra_bibtex_objs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">BibTexEntryBase</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                                       <span class="n">extract_from_str</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
                                       <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BibTexEntryBase</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets multiple BibTex objects from DOIs using the Mendeley API</span>
+
+<span class="sd">    :param item_doi_dict:</span>
+<span class="sd">    :param mendeley_client_id:</span>
+<span class="sd">    :param mendeley_client_secret:</span>
+<span class="sd">    :param extra_bibtex_objs:</span>
+<span class="sd">    :param extract_from_str:</span>
+<span class="sd">    :return:</span>
+
+<span class="sd">    :Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; # Note: these are fake credentials. You need to sign up for a Mendeley account, go to Mendeley Developers,</span>
+<span class="sd">        &gt;&gt;&gt; # and create an &quot;app&quot; which will give you this info.</span>
+<span class="sd">        &gt;&gt;&gt; mendeley_client_id: str = &#39;9871&#39;</span>
+<span class="sd">        &gt;&gt;&gt; mendeley_client_secret: str = &#39;sdfa4dfDSSDFasda&#39;</span>
+<span class="sd">        &gt;&gt;&gt; # Keys are name by which reference will be accessed, values are DOIs</span>
+<span class="sd">        &gt;&gt;&gt; item_doi_dict = {</span>
+<span class="sd">        &gt;&gt;&gt; &#39;da-engelberg-gao-2011&#39;: &#39;10.1111/j.1540-6261.2011.01679.x&#39;,</span>
+<span class="sd">        &gt;&gt;&gt; &#39;barber-odean-2008&#39;: &#39;10.1093/rfs/hhm079&#39;,</span>
+<span class="sd">        &gt;&gt;&gt; }</span>
+<span class="sd">        &gt;&gt;&gt; # These objects contain all the article data and can be used directly with pyexlatex</span>
+<span class="sd">        &gt;&gt;&gt; bibtex_objs = bibtex_gen.item_accessor_doi_dict_to_bib_tex(item_doi_dict, mendeley_client_id, mendeley_client_secret)</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">bib_texs</span> <span class="o">=</span> <span class="n">_item_accessor_doi_dict_to_bib_tex</span><span class="p">(</span>
         <span class="n">item_doi_dict</span><span class="p">,</span>
         <span class="n">mendeley_client_id</span><span class="p">,</span>
