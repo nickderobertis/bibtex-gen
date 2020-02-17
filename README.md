@@ -41,3 +41,7 @@ See the
 [documentation here.](
 https://nickderobertis.github.io/bibtex-gen/
 )
+
+## Author
+
+Created by Nick DeRobertis. MIT License.
