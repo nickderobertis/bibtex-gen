@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>bibtex_gen package &mdash; bibtex_gen 0.1.2 documentation</title>
+  <title>bibtex_gen package &mdash; bibtex_gen 0.2.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.2
+                0.2.0
               </div>
             
           
@@ -196,7 +196,15 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mendeley_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;9871&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mendeley_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;sdfa4dfDSSDFasda&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">btg</span> <span class="o">=</span> <span class="n">bibtex_gen</span><span class="o">.</span><span class="n">BibTexGenerator</span><span class="p">(</span><span class="n">mendeley_client_id</span><span class="p">,</span> <span class="n">mendeley_client_secret</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># This object contains all the article data and can be used directly with pyexlatex</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bibtex_obj</span> <span class="o">=</span> <span class="n">btg</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="s1">&#39;10.1111/j.1540-6261.2011.01679.x&#39;</span><span class="p">,</span> <span class="s1">&#39;da-engelberg-gao-2011&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Or, multiple at once with a dict</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">item_doi_dict</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;da-engelberg-gao-2011&#39;</span><span class="p">:</span> <span class="s1">&#39;10.1111/j.1540-6261.2011.01679.x&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;barber-odean-2008&#39;</span><span class="p">:</span> <span class="s1">&#39;10.1093/rfs/hhm079&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># These objects contain all the article data and can be used directly with pyexlatex</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bibtex_objs</span> <span class="o">=</span> <span class="n">btg</span><span class="o">.</span><span class="n">generate_from_dict</span><span class="p">(</span><span class="n">item_doi_dict</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
@@ -213,6 +221,16 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">BibTexEntryBase</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="bibtex_gen.main.BibTexGenerator.generate_from_dict">
+<code class="sig-name descname">generate_from_dict</code><span class="sig-paren">(</span><em class="sig-param">item_doi_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bibtex_gen/main.html#BibTexGenerator.generate_from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bibtex_gen.main.BibTexGenerator.generate_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">BibTexEntryBase</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>

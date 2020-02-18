@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>bibtex_gen.main &mdash; bibtex_gen 0.1.2 documentation</title>
+  <title>bibtex_gen.main &mdash; bibtex_gen 0.2.0 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.1.2
+                0.2.0
               </div>
             
           
@@ -183,15 +183,32 @@
 <span class="sd">        &gt;&gt;&gt; mendeley_client_id: str = &#39;9871&#39;</span>
 <span class="sd">        &gt;&gt;&gt; mendeley_client_secret: str = &#39;sdfa4dfDSSDFasda&#39;</span>
 <span class="sd">        &gt;&gt;&gt; btg = bibtex_gen.BibTexGenerator(mendeley_client_id, mendeley_client_secret)</span>
+<span class="sd">        &gt;&gt;&gt; # This object contains all the article data and can be used directly with pyexlatex</span>
 <span class="sd">        &gt;&gt;&gt; bibtex_obj = btg.generate(&#39;10.1111/j.1540-6261.2011.01679.x&#39;, &#39;da-engelberg-gao-2011&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; # Or, multiple at once with a dict</span>
+<span class="sd">        &gt;&gt;&gt; item_doi_dict = {</span>
+<span class="sd">        &gt;&gt;&gt; &#39;da-engelberg-gao-2011&#39;: &#39;10.1111/j.1540-6261.2011.01679.x&#39;,</span>
+<span class="sd">        &gt;&gt;&gt; &#39;barber-odean-2008&#39;: &#39;10.1093/rfs/hhm079&#39;,</span>
+<span class="sd">        &gt;&gt;&gt; }</span>
+<span class="sd">        &gt;&gt;&gt; # These objects contain all the article data and can be used directly with pyexlatex</span>
+<span class="sd">        &gt;&gt;&gt; bibtex_objs = btg.generate_from_dict(item_doi_dict)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="BibTexGenerator.__init__"><a class="viewcode-back" href="../../api/bibtex_gen.html#bibtex_gen.main.BibTexGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mendeley_client_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mendeley_client_secret</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mendeley_client_id</span> <span class="o">=</span> <span class="n">mendeley_client_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mendeley_client_secret</span> <span class="o">=</span> <span class="n">mendeley_client_secret</span>
         <span class="n">mendeley</span> <span class="o">=</span> <span class="n">Mendeley</span><span class="p">(</span><span class="n">mendeley_client_id</span><span class="p">,</span> <span class="n">mendeley_client_secret</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">mendeley</span><span class="o">.</span><span class="n">start_client_credentials_flow</span><span class="p">()</span><span class="o">.</span><span class="n">authenticate</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="BibTexGenerator.generate"><a class="viewcode-back" href="../../api/bibtex_gen.html#bibtex_gen.main.BibTexGenerator.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doi</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item_accessor</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BibTexEntryBase</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">bib_tex_from_doi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="n">doi</span><span class="p">,</span> <span class="n">item_accessor</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">bib_tex_from_doi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="n">doi</span><span class="p">,</span> <span class="n">item_accessor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BibTexGenerator.generate_from_dict"><a class="viewcode-back" href="../../api/bibtex_gen.html#bibtex_gen.main.BibTexGenerator.generate_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">generate_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_doi_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BibTexEntryBase</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">item_accessor_doi_dict_to_bib_tex</span><span class="p">(</span>
+            <span class="n">item_doi_dict</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mendeley_client_id</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mendeley_client_secret</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
 
 
 <span class="k">def</span> <span class="nf">_item_accessor_doi_dict_to_bib_tex</span><span class="p">(</span><span class="n">item_doi_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">mendeley_client_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
