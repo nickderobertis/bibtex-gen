@@ -23,6 +23,7 @@ pypandoc = "*"
 cruft = "*"
 mendeley2 = "*"
 pyexlatex = "*"
+jupyterlab = "*"
 
 [requires]
 python_version = "3.7"
