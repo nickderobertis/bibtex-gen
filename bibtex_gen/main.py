@@ -18,15 +18,32 @@ class BibTexGenerator:
         >>> mendeley_client_id: str = '9871'
         >>> mendeley_client_secret: str = 'sdfa4dfDSSDFasda'
         >>> btg = bibtex_gen.BibTexGenerator(mendeley_client_id, mendeley_client_secret)
+        >>> # This object contains all the article data and can be used directly with pyexlatex
         >>> bibtex_obj = btg.generate('10.1111/j.1540-6261.2011.01679.x', 'da-engelberg-gao-2011')
+        >>> # Or, multiple at once with a dict
+        >>> item_doi_dict = {
+        >>> 'da-engelberg-gao-2011': '10.1111/j.1540-6261.2011.01679.x',
+        >>> 'barber-odean-2008': '10.1093/rfs/hhm079',
+        >>> }
+        >>> # These objects contain all the article data and can be used directly with pyexlatex
+        >>> bibtex_objs = btg.generate_from_dict(item_doi_dict)
     """
 
     def __init__(self, mendeley_client_id: str, mendeley_client_secret: str):
+        self.mendeley_client_id = mendeley_client_id
+        self.mendeley_client_secret = mendeley_client_secret
         mendeley = Mendeley(mendeley_client_id, mendeley_client_secret)
         self.session = mendeley.start_client_credentials_flow().authenticate()
 
     def generate(self, doi: str, item_accessor: str) -> BibTexEntryBase:
         return bib_tex_from_doi(self.session, doi, item_accessor)
+
+    def generate_from_dict(self, item_doi_dict: Dict[str, str]) -> List[BibTexEntryBase]:
+        return item_accessor_doi_dict_to_bib_tex(
+            item_doi_dict,
+            self.mendeley_client_id,
+            self.mendeley_client_secret,
+        )
 
 
 def _item_accessor_doi_dict_to_bib_tex(item_doi_dict: Dict[str, str], mendeley_client_id: str,
