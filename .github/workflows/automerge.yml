@@ -48,6 +48,9 @@ jobs:
       - name: Test with pytest
         run: |
           pipenv run python -m pytest --cov=./ --cov-report=xml
+        env:
+          MENDELEY_CLIENT_ID: ${{ secrets.MENDELEY_CLIENT_ID }}
+          MENDELEY_SECRET: ${{ secrets.MENDELEY_SECRET }}
       - name: Static Typing Checks with mypy
         run: |
           pipenv run mypy $(python name.py)
